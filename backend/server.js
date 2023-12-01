@@ -4,6 +4,12 @@ const dotenv = require('dotenv');
 const connectDatabase = require('./database/db');
 const cloudinary = require('cloudinary');
 
+// Handling Uncaught Exception
+process.on("uncaughtException", (err) => {
+    console.log(`Shutting Down Server for Handling Uncaught Exception : ${err.message}`);
+});
+
+
 dotenv.config({
     path: "backend/config/.env"
 })
@@ -23,4 +29,12 @@ cloudinary.config({
 
 server.listen(PORT, HOST, () => {
     console.log(`Server is running on ${PORT}`);
+});
+
+// Unhandled Promise Rejection
+process.on("unhandledRejection", (err) => {
+    console.log(`Shutting Down Server for the ${err.message}`);
+    server.close(() => {
+        process.exit(1);
+    });
 });
