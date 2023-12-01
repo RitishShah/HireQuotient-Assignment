@@ -10,7 +10,7 @@ commenting system.
 ## Prerequisites:
 Node.js and npm installed.
 MongoDB installed and running.
-Internet connection for package instalation.
+Internet connection for package installation.
 
 
 ## Setup:
